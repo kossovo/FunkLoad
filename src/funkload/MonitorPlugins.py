@@ -23,7 +23,7 @@ gd_colors=[['red', 0xff0000],
            ['blue', 0x0000ff],
            ['yellow', 0xffff00],
            ['purple', 0x7f007f],
-          ] 
+          ]
 
 class MonitorPlugins():
     MONITORS = {}
@@ -77,10 +77,10 @@ class MonitorPlugin(object):
         version = open("/proc/version").readline()
         kernel_rev = float(re.search(r'version (\d+\.\d+)\.\d+',
                                      version).group(1))
-        if (kernel_rev > 2.6) or (kernel_rev < 2.4):
-            sys.stderr.write(
-                "Sorry, kernel v%0.1f is not supported\n" % kernel_rev)
-            sys.exit(-1)
+        #if (kernel_rev > 2.6) or (kernel_rev < 2.4):
+        #    sys.stderr.write(
+        #        "Sorry, kernel v%0.1f is not supported\n" % kernel_rev)
+        #    sys.exit(-1)
         return kernel_rev
 
     def gnuplot(self, times, host, image_prefix, data_prefix, gplot_path, chart_size, stats):
@@ -112,7 +112,7 @@ class MonitorPlugin(object):
                 li.append(' u 1:%d title "%s" with %s' % (len(data), plot.plots[p][1], plot.plots[p][0]))
             plotlines.append(plot_line+', ""'.join(li))
             plotsno+=1
-        
+
         lines=[]
         lines.append('set output "%s"' % image_path)
         lines.append('set terminal png size %d,%d' % (chart_size[0], chart_size[1]*plotsno))
@@ -183,7 +183,7 @@ class MonitorPlugin(object):
     def getStat(self):
         """ Read stats from system """
         pass
-  
+
     def parseStats(self, stats):
         """ Parse MonitorInfo object list """
         pass
